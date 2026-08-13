@@ -96,7 +96,7 @@ public class Activatica {
         return try await fetchJSON(from: url.absoluteString)
     }
     
-    public func getFeedPosts(limit: Int = 16,feedKind: String = "home",types: String? = nil,cursor: String = nil,hideHidden: Int? = nil) async throws -> Any {
+    public func getFeedPosts(limit: Int = 16,feedKind: String = "home",types: String? = nil,cursor: String? = nil,hideHidden: Int? = nil) async throws -> Any {
         guard var components = URLComponents(string: "\(api)/feed") else {
             throw NSError(domain: "Invalid URL", code: -1)
         }
@@ -109,7 +109,6 @@ public class Activatica {
         if let types = types {
             queryItems.append(URLQueryItem(name: "types", value: types))
         }
-
 
         if let cursor = cursor {
             queryItems.append(URLQueryItem(name: "cursor", value: cursor))
